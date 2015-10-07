@@ -1,6 +1,6 @@
 *.pydevproject
 .metadata
-*.DS_Store
+*/*.DS_Store
 .gradle
 bin/
 tmp/
