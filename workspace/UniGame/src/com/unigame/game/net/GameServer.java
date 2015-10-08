@@ -1,5 +1,7 @@
 package com.unigame.game.net;
-
+import java.lang.annotation.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -7,6 +9,10 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.lang.model.element.Element;
+
+import annotation.ServerAnnotation;
 
 import com.unigame.game.Game;
 import com.unigame.game.entities.PlayerMP;
@@ -22,10 +28,23 @@ public class GameServer extends Thread {
     private Game game;
     private List<PlayerMP> connectedPlayers = new ArrayList<PlayerMP>();
 
+    
     public GameServer(Game game) {
         this.game = game;
-        try {
-            this.socket = new DatagramSocket(1331);
+        connection();
+    }
+   
+    @ServerAnnotation(porta=1331, ip="0.0.0.0")
+    public void connection () {
+    	try {
+        	Method m;
+			try {
+				m = GameServer.class.getMethod("connection");
+				int porta = m.getAnnotation(ServerAnnotation.class).porta();
+	            this.socket = new DatagramSocket(porta);
+			} catch (NoSuchMethodException | SecurityException e) {
+				e.printStackTrace();
+			}
         } catch (SocketException e) {
             e.printStackTrace();
         }

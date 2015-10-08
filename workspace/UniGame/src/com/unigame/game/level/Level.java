@@ -91,7 +91,7 @@ public class Level {
     }
 
     public void tick() {
-        for (Entity e : getEntities()) {
+        for (Entity e : new ArrayList<>(entities)) {
             e.tick();
         }
 
@@ -140,8 +140,10 @@ public class Level {
 
     public synchronized void removePlayerMP(String username) {
         int index = 0;
-        for (Entity e : getEntities()) {
+        int thisIndex = 0;
+        for (Entity e : new ArrayList<>(entities)) {
             if (e instanceof PlayerMP && ((PlayerMP) e).getUsername().equals(username)) {
+            	thisIndex = index;
                 break;
             }
             index++;
@@ -151,8 +153,10 @@ public class Level {
 
     private int getPlayerMPIndex(String username) {
         int index = 0;
-        for (Entity e : getEntities()) {
+        int thisIndex = 0;
+        for (Entity e : new ArrayList<>(entities)) {
             if (e instanceof PlayerMP && ((PlayerMP) e).getUsername().equals(username)) {
+            	thisIndex = index;
                 break;
             }
             index++;
@@ -162,6 +166,7 @@ public class Level {
 
     public synchronized void movePlayer(String username, int x, int y, int numSteps, boolean isMoving, int movingDir) {
         int index = getPlayerMPIndex(username);
+        System.out.println("move player:" +username+ " (" +index+ ")");
         PlayerMP player = (PlayerMP) this.getEntities().get(index);
         player.x = x;
         player.y = y;
