@@ -1,4 +1,3 @@
-
 package com.unigame.game.gfx;
 
 public class Screen {

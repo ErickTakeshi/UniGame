@@ -72,14 +72,14 @@ public class GameServer extends Thread {
         case LOGIN:
             packet = new Packet00Login(data);
             System.out.println("[" + address.getHostAddress() + ":" + port + "] "
-                    + ((Packet00Login) packet).getUsername() + " has connected...");
+                    + ((Packet00Login) packet).getUsername() + " conectou...");
             PlayerMP player = new PlayerMP(game.level, 100, 100, ((Packet00Login) packet).getUsername(), address, port);
             this.addConnection(player, (Packet00Login) packet);
             break;
         case DISCONNECT:
             packet = new Packet01Disconnect(data);
             System.out.println("[" + address.getHostAddress() + ":" + port + "] "
-                    + ((Packet01Disconnect) packet).getUsername() + " has left...");
+                    + ((Packet01Disconnect) packet).getUsername() + " saiu...");
             this.removeConnection((Packet01Disconnect) packet);
             break;
         case MOVE:

@@ -23,7 +23,7 @@ public class Game extends Canvas implements Runnable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final int WIDTH = 160;
+    public static final int WIDTH = 200;
     public static final int HEIGHT = WIDTH / 12 * 9;
     public static final int SCALE = 3;
     public static final String NAME = "UniGame";
@@ -88,7 +88,13 @@ public class Game extends Canvas implements Runnable {
         thread = new Thread(this, NAME + "_main");
         thread.start();
         if (!isApplet) {
-            if (JOptionPane.showConfirmDialog(this, "Deseja criar o servidor?") == 0) {
+        	Object[] options = {"Não", "Sim"};
+        	int chosen = JOptionPane.showOptionDialog(this, "Deseja criar o servidor?", "UniGame",JOptionPane.YES_NO_OPTION,
+        			JOptionPane.QUESTION_MESSAGE,
+        			null,     //do not use a custom Icon
+        			options,  //the titles of buttons
+        			options[1]);
+            if (chosen == 1) {
                 socketServer = new GameServer(this);
                 socketServer.start();
             }
