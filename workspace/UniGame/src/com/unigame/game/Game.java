@@ -26,7 +26,7 @@ public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 160;
     public static final int HEIGHT = WIDTH / 12 * 9;
     public static final int SCALE = 3;
-    public static final String NAME = "Game";
+    public static final String NAME = "UniGame";
     public static final Dimension DIMENSIONS = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
     public static Game game;
 
@@ -88,7 +88,7 @@ public class Game extends Canvas implements Runnable {
         thread = new Thread(this, NAME + "_main");
         thread.start();
         if (!isApplet) {
-            if (JOptionPane.showConfirmDialog(this, "Do you want to run the server") == 0) {
+            if (JOptionPane.showConfirmDialog(this, "Deseja criar o servidor?") == 0) {
                 socketServer = new GameServer(this);
                 socketServer.start();
             }

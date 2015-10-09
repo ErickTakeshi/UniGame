@@ -1,6 +1,5 @@
 package com.unigame.game.net;
-import java.lang.annotation.*;
-import java.lang.reflect.Field;
+
 import java.lang.reflect.Method;
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -10,7 +9,6 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.lang.model.element.Element;
 
 import annotation.ServerAnnotation;
 
@@ -34,7 +32,7 @@ public class GameServer extends Thread {
         connection();
     }
    
-    @ServerAnnotation(porta=1331, ip="0.0.0.0")
+    @ServerAnnotation(porta=1331, ip="localhost")
     public void connection () {
     	try {
         	Method m;
