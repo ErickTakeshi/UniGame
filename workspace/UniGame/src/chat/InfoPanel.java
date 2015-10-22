@@ -1,5 +1,5 @@
 /*
- *	Chat.java
+ *	InfoPanel.java
  */
 
 /*
@@ -36,77 +36,29 @@
 
 package org.jsresources.apps.chat;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 
 
-public class Chat
+public class InfoPanel
+extends JPanel
 {
-	boolean	m_bPackFrame = false;
-
-
-
-	public Chat()
+    /**
+       @param masterModel the MasterModel passed from ChatPane. In
+       this class, the masterModel is ignored.
+     */
+	public InfoPanel(MasterModel masterModel)
 	{
-		JFrame frame = new JFrame();
-		frame.setTitle("Chat");
-		frame.setSize(new Dimension(500, 300));
-		WindowAdapter	windowAdapter = new WindowAdapter()
-			{
-				public void windowClosing(WindowEvent we)
-				{
-					System.exit(0);
-				}
-			};
-		frame.addWindowListener(windowAdapter);
-
-		JComponent tabbedPane = new ChatPane();
-		frame.getContentPane().add(tabbedPane);
-
-		//Validate frames that have preset sizes
-		//Pack frames that have useful preferred size info, e.g. from their layout
-		if (m_bPackFrame)
-		{
-			frame.pack();
-		}
-		else
-		{
-			frame.validate();
-		}
-
-		//Center the window
-		Dimension	screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension	frameSize = frame.getSize();
-		if (frameSize.height > screenSize.height)
-		{
-			frameSize.height = screenSize.height;
-		}
-		if (frameSize.width > screenSize.width)
-		{
-			frameSize.width = screenSize.width;
-		}
-		frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
-		frame.setVisible(true);
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		// TODO: fetch version from somewhere else
+		this.add(new JLabel("Chat 0.x.0"));
+		this.add(new JLabel("Copyright (c) 2000 - 2004 Matthias Pfisterer and Florian Bomers"));
+		this.add(new JLabel("This software is distributed under the terms of the BSD License"));
 	}
+} 
 
 
 
-	public static void main(String[] args)
-	{
-		try {
-			new Chat();
-		} catch (Throwable t) {
-			System.err.println("Exception occurred in main():");
-			t.printStackTrace();
-			System.exit(1);
-		}
-	}
-}
-
-
-/*** Chat.java ***/
+/*** InfoPanel.java ***/

@@ -1,5 +1,5 @@
 /*
- *	Chat.java
+ *	ChatApplet.java
  */
 
 /*
@@ -40,36 +40,33 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JApplet;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 
 
-public class Chat
+public class ChatApplet
+extends JApplet
 {
 	boolean	m_bPackFrame = false;
 
 
 
-	public Chat()
+	public ChatApplet()
 	{
-		JFrame frame = new JFrame();
-		frame.setTitle("Chat");
-		frame.setSize(new Dimension(500, 300));
-		WindowAdapter	windowAdapter = new WindowAdapter()
-			{
-				public void windowClosing(WindowEvent we)
-				{
-					System.exit(0);
-				}
-			};
-		frame.addWindowListener(windowAdapter);
+	}
 
+
+	public void init()
+	{
 		JComponent tabbedPane = new ChatPane();
-		frame.getContentPane().add(tabbedPane);
+		getContentPane().add(tabbedPane);
 
 		//Validate frames that have preset sizes
 		//Pack frames that have useful preferred size info, e.g. from their layout
+/*
 		if (m_bPackFrame)
 		{
 			frame.pack();
@@ -78,35 +75,11 @@ public class Chat
 		{
 			frame.validate();
 		}
+*/
 
-		//Center the window
-		Dimension	screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension	frameSize = frame.getSize();
-		if (frameSize.height > screenSize.height)
-		{
-			frameSize.height = screenSize.height;
-		}
-		if (frameSize.width > screenSize.width)
-		{
-			frameSize.width = screenSize.width;
-		}
-		frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
-		frame.setVisible(true);
-	}
-
-
-
-	public static void main(String[] args)
-	{
-		try {
-			new Chat();
-		} catch (Throwable t) {
-			System.err.println("Exception occurred in main():");
-			t.printStackTrace();
-			System.exit(1);
-		}
 	}
 }
 
 
-/*** Chat.java ***/
+ 
+/*** ChatApplet.java ***/

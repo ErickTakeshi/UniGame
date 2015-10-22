@@ -1,9 +1,9 @@
 /*
- *	Chat.java
+ *	ChatPane.java
  */
 
 /*
- * Copyright (c) 1999 - 2001 by Matthias Pfisterer
+ * Copyright (c) 1999 - 2004 by Matthias Pfisterer
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,77 +36,61 @@
 
 package org.jsresources.apps.chat;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.BorderLayout;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 
 
-public class Chat
+public class ChatPane
+extends JPanel
 {
-	boolean	m_bPackFrame = false;
+	private JLabel		m_statusLabel;
 
 
-
-	public Chat()
+	public ChatPane()
 	{
-		JFrame frame = new JFrame();
-		frame.setTitle("Chat");
-		frame.setSize(new Dimension(500, 300));
-		WindowAdapter	windowAdapter = new WindowAdapter()
-			{
-				public void windowClosing(WindowEvent we)
-				{
-					System.exit(0);
-				}
-			};
-		frame.addWindowListener(windowAdapter);
+		super();
 
-		JComponent tabbedPane = new ChatPane();
-		frame.getContentPane().add(tabbedPane);
+		MasterModel masterModel = new MasterModel();
+		setLayout(new BorderLayout());
+		JComponent tabbed = createTabbedPane(masterModel);
+		this.add(tabbed, BorderLayout.CENTER);
+		m_statusLabel = new JLabel();
+		this.add(m_statusLabel, BorderLayout.SOUTH);
 
-		//Validate frames that have preset sizes
-		//Pack frames that have useful preferred size info, e.g. from their layout
-		if (m_bPackFrame)
-		{
-			frame.pack();
-		}
-		else
-		{
-			frame.validate();
-		}
-
-		//Center the window
-		Dimension	screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		Dimension	frameSize = frame.getSize();
-		if (frameSize.height > screenSize.height)
-		{
-			frameSize.height = screenSize.height;
-		}
-		if (frameSize.width > screenSize.width)
-		{
-			frameSize.width = screenSize.width;
-		}
-		frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
-		frame.setVisible(true);
+		setStatusLine(" ");
 	}
 
 
-
-	public static void main(String[] args)
+	private JComponent createTabbedPane(MasterModel masterModel)
 	{
-		try {
-			new Chat();
-		} catch (Throwable t) {
-			System.err.println("Exception occurred in main():");
-			t.printStackTrace();
-			System.exit(1);
-		}
+		JTabbedPane tabbedPane = new JTabbedPane();
+		JComponent	component;
+		component = new ConnectionPanel(masterModel);
+		tabbedPane.add(component, "Connection");
+
+		component = new AudioPanel(masterModel);
+		tabbedPane.add(component, "Audio");
+
+		component = new SettingsPanel(masterModel);
+		tabbedPane.add(component, "Settings");
+
+		component = new InfoPanel(masterModel);
+		tabbedPane.add(component, "Info");
+
+		return tabbedPane;
+	}
+
+
+	public void setStatusLine(String strMessage)
+	{
+		m_statusLabel.setText(strMessage);
 	}
 }
 
 
-/*** Chat.java ***/
+
+/*** ChatPane.java ***/
