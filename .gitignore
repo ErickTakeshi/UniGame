@@ -38,3 +38,4 @@ local.properties
 
 # TeXlipse plugin
 .texlipse
+workspace/UniGame/src/com/unigame/game/Game.java
