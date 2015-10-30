@@ -9,7 +9,7 @@ public class Janela {
 	/**
 	 * Este construtor cria uma janela/tela do jogo através dos parâmetros recebidos.
 	 * E inicializa o jogo
-	 * */
+	 *k */
 	
 	public Janela(int largura, int altura, String titulo, Jogo jogo) {
 		jogo.setPreferredSize(new Dimension(largura,altura));
