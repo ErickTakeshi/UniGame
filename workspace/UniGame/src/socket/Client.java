@@ -61,8 +61,8 @@ public class Client {
             response = in.readLine();
             if (response.startsWith("WELCOME")) {
                 char mark = response.charAt(8);
-                icon = new ImageIcon(mark == 'X' ? System.getProperty("user.dir")+"/assets/x.gif" : System.getProperty("user.dir")+"/assets/o.gif");
-                opponentIcon  = new ImageIcon(mark == 'X' ? System.getProperty("user.dir")+"/assets/o.gif" : System.getProperty("user.dir")+"/assets/x.gif");
+                icon = new ImageIcon(mark == 'X' ? System.getProperty("user.dir")+"/cenarios/x.gif" : System.getProperty("user.dir")+"/assets/o.gif");
+                opponentIcon  = new ImageIcon(mark == 'X' ? System.getProperty("user.dir")+"/cenarios/o.gif" : System.getProperty("user.dir")+"/assets/x.gif");
                 frame.setTitle("Tic Tac Toe - Player " + mark);
             }
             while (true) {
