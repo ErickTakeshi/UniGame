@@ -61,32 +61,32 @@ public class Client {
             response = in.readLine();
             if (response.startsWith("WELCOME")) {
                 char mark = response.charAt(8);
-                icon = new ImageIcon(mark == 'X' ? System.getProperty("user.dir")+"/cenarios/x.gif" : System.getProperty("user.dir")+"/assets/o.gif");
-                opponentIcon  = new ImageIcon(mark == 'X' ? System.getProperty("user.dir")+"/cenarios/o.gif" : System.getProperty("user.dir")+"/assets/x.gif");
+                icon = new ImageIcon(mark == 'X' ? "cenarios/x.gif" : "cenarios/o.gif");
+                opponentIcon  = new ImageIcon(mark == 'X' ? "cenarios/o.gif" : "cenarios/x.gif");
                 frame.setTitle("Tic Tac Toe - Player " + mark);
             }
             while (true) {
                 response = in.readLine();
-                if (response.startsWith("VALID_MOVE")) {
-                    messageLabel.setText("Valid move, please wait");
-                    currentSquare.setIcon(icon);
-                    currentSquare.repaint();
-                } else if (response.startsWith("OPPONENT_MOVED")) {
-                    int loc = Integer.parseInt(response.substring(15));
-                    board[loc].setIcon(opponentIcon);
-                    board[loc].repaint();
-                    messageLabel.setText("Opponent moved, your turn");
-                } else if (response.startsWith("VICTORY")) {
-                    messageLabel.setText("You win");
+                if (response.startsWith("TEMPO_COMECOU")) {
+                	//Começou sua vez
+                } else if (response.startsWith("TEMPO_ACABOU")) {
+                	//Acabou sua vez e passa a vez para o outro jogador
+                }else if (response.startsWith("MOVIMENTO")) {
+                	//faz jogada do player
+                } else if (response.startsWith("MOVIMENTO_OPONENTE")) {
+                    //Movimento do oponente
+                } else if (response.startsWith("TIRO")) {
+                	//Momento do tiro
+                } else if (response.startsWith("TIRO_OPONENTE")) {
+                	//Momento do tiro do oponente
+                } else if (response.startsWith("VENCEU")) {
+                    //Venceu a partida
                     break;
-                } else if (response.startsWith("DEFEAT")) {
-                    messageLabel.setText("You lose");
+                } else if (response.startsWith("PERDEU")) {
+                    //PERDEU
                     break;
-                } else if (response.startsWith("TIE")) {
-                    messageLabel.setText("You tied");
-                    break;
-                } else if (response.startsWith("MESSAGE")) {
-                    messageLabel.setText(response.substring(8));
+                } else if (response.startsWith("MENSSAGEM")) {
+                	//Printa na tela uma mensagem do jogo 
                 }
             }
             out.println("QUIT");
