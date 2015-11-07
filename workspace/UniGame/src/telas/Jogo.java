@@ -33,7 +33,7 @@ public class Jogo extends Canvas implements Runnable {
 		ALT = getHeight();
 		tex = new Texturas();
 		BufferedImageLoader loader = new BufferedImageLoader();		
-		level = loader.loadImage("/level1.png");//carrega o level
+		level = loader.loadImage("/level1.png");
 		nuvem = loader.loadImage("/nuvem.png");
 		explosao = loader.loadImage("/explosao.gif");
 		controlador = new Controlador();
@@ -101,12 +101,10 @@ public class Jogo extends Canvas implements Runnable {
 		if (bs == null) {
 			this.createBufferStrategy(3);// basic 3 windows
 			return;
-		}
-		
+		}		
 		Graphics g = bs.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D)g; // camera
-		// ////////////////////////////////
-		
+		// ////////////////////////////////		
 		// desenha aqui
 		
 		g.setColor(new Color(25,191,224));
@@ -152,12 +150,8 @@ public class Jogo extends Canvas implements Runnable {
 				if(red==50 && green ==50 && blue ==50){
 					System.out.println("cria Objeto");
 					controlador.addObject(new Jogador(xx*32,yy*32,controlador, ObjectId.Player));
-				}
-			
-				
-				
-			}
-			
+				}			
+			}			
 		}
 	}
 	
