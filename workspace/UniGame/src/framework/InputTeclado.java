@@ -2,11 +2,10 @@ package framework;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.time.temporal.Temporal;
+
 
 import objetos.Bala_Tiro;
 import telas.Controlador;
-import telas.Jogo;
 
 public class InputTeclado extends KeyAdapter {
 
