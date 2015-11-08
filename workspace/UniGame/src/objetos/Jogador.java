@@ -20,15 +20,14 @@ public class Jogador extends Objeto_Jogo {
 	private float width = 48, height = 64;
 	private float gravity = 0.008f;// velocidade da gravidade
 	private boolean queda = true;
-	private final float VelocidadeMaxima = 10;
+	private final float VelocidadeMaxima = 8;
 	private Controlador controlador;
 	Texturas tex = Jogo.getInstance();
 	private Animacao jogadorAndando;
 	public Jogador(float _x, float _y, Controlador _controlador, ObjectId _id) {
 		super(_x, _y, _id);
 		this.controlador = _controlador;
-		
-		jogadorAndando = new Animacao(5, tex.jogador[1],tex.jogador[2],tex.jogador[3]);
+		jogadorAndando = new Animacao(5, tex.jogador[1],tex.jogador[2],tex.jogador[3]);		
 	}
 
 	public void tick(LinkedList<Objeto_Jogo> objeto) {

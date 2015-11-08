@@ -20,7 +20,7 @@ public class Jogo extends Canvas implements Runnable {
 	private boolean JogoRodando = false;
 	private Thread thread;
 	public static int LARG, ALT;
-	private BufferedImage level = null, nuvem=null,explosao=null;
+	private BufferedImage level = null,nuvem=null;
 
 	// objeto
 	Controlador controlador;
@@ -33,15 +33,12 @@ public class Jogo extends Canvas implements Runnable {
 		ALT = getHeight();
 		tex = new Texturas();
 		BufferedImageLoader loader = new BufferedImageLoader();		
-		level = loader.loadImage("/level1.png");
-		nuvem = loader.loadImage("/nuvem.png");
-		explosao = loader.loadImage("/explosao.gif");
+		level = loader.loadImage("/level.png");//carrega o level
+		 //nuvem = loader.loadImage("/nuvem.png");
+		//explosao = loader.loadImage("/explosao.gif");
 		controlador = new Controlador();
 		cam = new Camera(0,0);		
 		LoadImageLevel(level);		
-		
-		//controlador.addObject(new Jogador(100, 100, controlador,ObjectId.Player));		
-		//controlador.criaLevel();
 		this.addKeyListener(new InputTeclado(controlador));
 	}
 
@@ -58,7 +55,7 @@ public class Jogo extends Canvas implements Runnable {
 		init();
 		long ultimoTempo = System.nanoTime();
 		double tick = 60;
-		double ns = 100000000 / tick;
+		double ns = 190000000 / tick;
 		double delta = 0;
 		long tempo = System.currentTimeMillis();
 		int atualizacoes = 0;
@@ -81,7 +78,6 @@ public class Jogo extends Canvas implements Runnable {
 				atualizacoes = 0;
 			}
 		}
-		// System.out.println("Thread iniciada!");
 	}
 
 	// escala loop atualizações
@@ -101,19 +97,19 @@ public class Jogo extends Canvas implements Runnable {
 		if (bs == null) {
 			this.createBufferStrategy(3);// basic 3 windows
 			return;
-		}		
+		}
+		
 		Graphics g = bs.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D)g; // camera
-		// ////////////////////////////////		
-		// desenha aqui
 		
-		g.setColor(new Color(25,191,224));
+		// ------------ desenha aqui --------------------
+		g.setColor(new Color(25,191,224)); // cor de fundo
 		g.fillRect(0, 0, LARG, ALT);
-		//g.drawImage(nuvem, 0, 0, this);
+		//g.drawImage(nuvem, 0, 0, this); // nuvem
 		g2d.translate(cam.getX()+150,cam.getY()); // inicio da camera		
-		for (int xx = 0; xx <nuvem.getWidth()*7; xx+=nuvem.getWidth()) {
-			g.drawImage(nuvem, xx+xx, 50, this);
-		}
+		//for (int xx = 0; xx <nuvem.getWidth()*7; xx+=nuvem.getWidth()) {
+		//	g.drawImage(nuvem, xx+xx, 50, this);
+		//}
 		//g.drawImage(nuvem, 0, 50, this);
 		
 		controlador.render(g);	
@@ -125,13 +121,6 @@ public class Jogo extends Canvas implements Runnable {
 	}
 
 	
-	public void DrawExplosao(int w, int h){
-		BufferStrategy bs = this.getBufferStrategy();
-		Graphics g = bs.getDrawGraphics();
-		g.drawImage(explosao, w, h, this);
-		g.dispose();
-		bs.show();
-	}
 	
 	private void LoadImageLevel(BufferedImage image){
 		int w =image.getWidth();
@@ -148,10 +137,14 @@ public class Jogo extends Canvas implements Runnable {
 					controlador.addObject(new Bloco(xx*32,yy*32,0, ObjectId.Bloco));
 				}
 				if(red==50 && green ==50 && blue ==50){
-					System.out.println("cria Objeto");
+					//System.out.println("cria Objeto");
 					controlador.addObject(new Jogador(xx*32,yy*32,controlador, ObjectId.Player));
-				}			
-			}			
+				}
+			
+				
+				
+			}
+			
 		}
 	}
 	
