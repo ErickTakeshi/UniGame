@@ -1,7 +1,6 @@
 package telas;
 
 import java.awt.Dimension;
-
 import javax.swing.JFrame;
 
 public class Janela {
@@ -21,8 +20,7 @@ public class Janela {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-				
+		frame.setVisible(true);				
 		jogo.start();// inicializa
 	}
 }
