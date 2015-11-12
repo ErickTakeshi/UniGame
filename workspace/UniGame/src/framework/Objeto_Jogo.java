@@ -57,7 +57,8 @@ public abstract class Objeto_Jogo {
 	}
 
 	public void setAngulo(int _angulo) {
-		this.angulo = _angulo; 
+		if (_angulo > -91 && angulo < 91) 
+			this.angulo = _angulo;
 	}
 	
 	public boolean isQueda() {

@@ -44,14 +44,18 @@ public class InputTeclado extends KeyAdapter {
 				}
 				if (shiftPressed) {
 					int anguloAtual = tempObjeto.getAngulo();
+					System.out.println("Angulo atual:"+ anguloAtual);
 					if (upPressed) {
+						anguloAtual++;
 						System.out.println("Mira Pra cima!");
-						tempObjeto.angulo = anguloAtual++;
+						
 					} else if (downPressed) {
+						anguloAtual--;
 						System.out.println("Mira Pra baixo!");
-						tempObjeto.angulo = anguloAtual--;
+						
 					}
-					System.out.println(tempObjeto.angulo);
+					tempObjeto.setAngulo(anguloAtual);
+					System.out.println("Angulo atual:"+ anguloAtual);
 				} else { //shift nao precionado
 					
 				
