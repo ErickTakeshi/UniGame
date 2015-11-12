@@ -30,7 +30,7 @@ public class Controlador {
 
 	public void addObject(Objeto_Jogo _objeto) {					
 		this.objeto.add(_objeto);
-		System.out.println("qtd: tiro: " + objeto.size());
+		//System.out.println("qtd: tiro: " + objeto.size());
 	}
 
 	public void removeObject(Objeto_Jogo _objeto) {

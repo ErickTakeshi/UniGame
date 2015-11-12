@@ -73,14 +73,14 @@ public class Jogo extends Canvas implements Runnable {
 			frames++;
 			if (System.currentTimeMillis() - tempo > 1000) {
 				tempo += 1000;
-				System.out.println("FPS: " + frames + " Tick: " + atualizacoes);
+				//System.out.println("FPS: " + frames + " Tick: " + atualizacoes);
 				frames = 0;
 				atualizacoes = 0;
 			}
 		}
 	}
 
-	// escala loop atualizações
+	// escala loop atualizaï¿½ï¿½es
 	private void tick() {
 		controlador.tick();
 		for (int i = 0; i < controlador.objeto.size(); i++) {
@@ -125,7 +125,7 @@ public class Jogo extends Canvas implements Runnable {
 	private void LoadImageLevel(BufferedImage image){
 		int w =image.getWidth();
 		int h = image.getHeight();
-		System.out.println("largura, altura: "+w+", "+h);
+		//System.out.println("largura, altura: "+w+", "+h);
 		
 		for (int xx = 0; xx < h; xx++) {
 			for (int yy = 0; yy < w; yy++) {
