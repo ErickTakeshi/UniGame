@@ -93,16 +93,12 @@ public class Jogador extends Objeto_Jogo {
 				frente = false;
 				jogadorAndandoTras.drawAnimacao(g, (int)x, (int)y,70,70);
 			}
-			
-			
-			
 		} else {
 			if (frente) {
 				g.drawImage(tex.jogador[0], (int)x,(int)y,70,70,null);
 			} else {
 				g.drawImage(tex.jogador[9], (int)x,(int)y,70,70,null);
 			}
-			
 		}
 		
 
