@@ -42,16 +42,17 @@ public class InputTeclado extends KeyAdapter {
 				if (key == down) {
 					downPressed = true;
 				}
-				
-				if (shiftPressed && upPressed) {
-					System.out.println("Mira Pra cima!");
-				}
-				
-				if (shiftPressed && downPressed) {
-					System.out.println("Mira Pra baixo!");
-				}
-				
-				if (!shiftPressed) {
+				if (shiftPressed) {
+					int anguloAtual = tempObjeto.getAngulo();
+					if (upPressed) {
+						System.out.println("Mira Pra cima!");
+						tempObjeto.angulo = anguloAtual++;
+					} else if (downPressed) {
+						System.out.println("Mira Pra baixo!");
+						tempObjeto.angulo = anguloAtual--;
+					}
+					System.out.println(tempObjeto.angulo);
+				} else { //shift nao precionado
 					
 				
 					if ((key == KeyEvent.VK_UP) && (tempObjeto.isPulo()) == false) {

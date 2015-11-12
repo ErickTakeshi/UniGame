@@ -23,11 +23,12 @@ public class Jogador extends Objeto_Jogo {
 	private final float VelocidadeMaxima = 8;
 	private Controlador controlador;
 	Texturas tex = Jogo.getInstance();
-	private Animacao jogadorAndando;
+	private Animacao jogadorAndando,jogadorAndandoTras;
 	public Jogador(float _x, float _y, Controlador _controlador, ObjectId _id) {
 		super(_x, _y, _id);
 		this.controlador = _controlador;
-		jogadorAndando = new Animacao(5, tex.jogador[1],tex.jogador[2],tex.jogador[3]);		
+		jogadorAndando = new Animacao(1, tex.jogador[1],tex.jogador[2],tex.jogador[3], tex.jogador[4]);
+		jogadorAndandoTras = new Animacao(1, tex.jogador[5],tex.jogador[6],tex.jogador[7], tex.jogador[8]);
 	}
 
 	public void tick(LinkedList<Objeto_Jogo> objeto) {
@@ -83,12 +84,17 @@ public class Jogador extends Objeto_Jogo {
 	}
 
 	public void render(Graphics g) {
-		g.setColor(Color.BLUE);
 		if (velX!=0) {
-			jogadorAndando.drawAnimacao(g, (int)x, (int)y,48,96);
+			if (velX > 0) {
+				jogadorAndando.drawAnimacao(g, (int)x, (int)y,70,70);
+			} else {
+				jogadorAndandoTras.drawAnimacao(g, (int)x, (int)y,70,70);
+			}
+			
+			
 			
 		} else {
-			g.drawImage(tex.jogador[0], (int)x,(int)y,48,64,null);
+			g.drawImage(tex.jogador[0], (int)x,(int)y,70,70,null);
 		}
 		
 
