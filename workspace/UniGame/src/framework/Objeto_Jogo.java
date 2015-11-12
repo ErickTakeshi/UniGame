@@ -12,7 +12,8 @@ public abstract class Objeto_Jogo {
 	protected boolean queda = true;
 	protected boolean pulo = true;
 	protected int enfrentando = 1;
-	
+	protected int vida = 100;
+	protected int angulo = 0;
 	
 	protected Objeto_Jogo(float _x, float _y, ObjectId _id) {
 		this.x = _x;
@@ -51,7 +52,13 @@ public abstract class Objeto_Jogo {
 		this.velY = _veloY;
 	}
 	
-	
+	public int getAngulo() {
+		return angulo;
+	}
+
+	public void setAngulo(int _angulo) {
+		this.angulo = _angulo; 
+	}
 	
 	public boolean isQueda() {
 		return queda;
