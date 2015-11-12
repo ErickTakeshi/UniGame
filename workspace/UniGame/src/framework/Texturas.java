@@ -10,7 +10,7 @@ public class Texturas {
 	private BufferedImage jogador_sheet = null;
 	private Objeto_Jogo objetoJogo;
 	public BufferedImage[] block = new BufferedImage[3];
-	public BufferedImage[] jogador = new BufferedImage[9];
+	public BufferedImage[] jogador = new BufferedImage[10];
 
 	public Texturas() {
 		BufferedImageLoader loader = new BufferedImageLoader();
@@ -31,8 +31,8 @@ public class Texturas {
 		block[1] = bs.grabImage(2, 1, 32, 32);// grama block
 		
 		
-		jogador[0] = ps.grabImage(5, 2, 70, 70); // personagem inativo do
-		// jogador
+		jogador[0] = ps.grabImage(5, 2, 70, 70); // personagem inativo frente
+		jogador[9] = ps.grabImage(5, 3, 70, 70); // personagem inativo traz
 		
 		//ANDANDO PRA FRENTE
 		jogador[1] = ps.grabImage(1, 2, 70, 70);
@@ -44,7 +44,6 @@ public class Texturas {
 		jogador[6] = ps.grabImage(2, 3, 70, 70); 
 		jogador[7] = ps.grabImage(3, 3, 70, 70);
 		jogador[8] = ps.grabImage(4, 3, 70, 70);
-		
 		/*
 		 * EXEMPLO - (2, 1, 54, 58); o 2 significa a coluna na imagem, 1
 		 * significa a linha 54 significa a largura e 58 altura

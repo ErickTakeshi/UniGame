@@ -21,6 +21,7 @@ public class Jogador extends Objeto_Jogo {
 	private float gravity = 0.008f;// velocidade da gravidade
 	private boolean queda = true;
 	private final float VelocidadeMaxima = 8;
+	boolean frente = true;
 	private Controlador controlador;
 	Texturas tex = Jogo.getInstance();
 	private Animacao jogadorAndando,jogadorAndandoTras;
@@ -86,15 +87,22 @@ public class Jogador extends Objeto_Jogo {
 	public void render(Graphics g) {
 		if (velX!=0) {
 			if (velX > 0) {
+				frente = true;
 				jogadorAndando.drawAnimacao(g, (int)x, (int)y,70,70);
 			} else {
+				frente = false;
 				jogadorAndandoTras.drawAnimacao(g, (int)x, (int)y,70,70);
 			}
 			
 			
 			
 		} else {
-			g.drawImage(tex.jogador[0], (int)x,(int)y,70,70,null);
+			if (frente) {
+				g.drawImage(tex.jogador[0], (int)x,(int)y,70,70,null);
+			} else {
+				g.drawImage(tex.jogador[9], (int)x,(int)y,70,70,null);
+			}
+			
 		}
 		
 
