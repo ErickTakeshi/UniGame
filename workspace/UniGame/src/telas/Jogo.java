@@ -139,9 +139,7 @@ public class Jogo extends Canvas implements Runnable {
 				if(red==50 && green ==50 && blue ==50){
 					//System.out.println("cria Objeto");
 					controlador.addObject(new Jogador(xx*32,yy*32,controlador, ObjectId.Player));
-				}
-			
-				
+				}							
 				
 			}
 			
@@ -153,6 +151,6 @@ public class Jogo extends Canvas implements Runnable {
 	}
 	
 	public static void main(String args[]) {
-		new Janela(800, 600, "Game Unifil - Grupo Unipet", new Jogo());
+		new Janela(1200,650, "Game Unifil - Grupo UniGame", new Jogo());
 	}
 }

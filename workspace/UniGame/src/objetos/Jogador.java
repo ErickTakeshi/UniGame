@@ -21,26 +21,24 @@ public class Jogador extends Objeto_Jogo {
 	private float gravity = 0.008f;// velocidade da gravidade
 	private boolean queda = true;
 	private final float VelocidadeMaxima = 8;
-	boolean frente = true;
 	private Controlador controlador;
 	Texturas tex = Jogo.getInstance();
 	private Animacao jogadorAndando,jogadorAndandoTras;
 	public Jogador(float _x, float _y, Controlador _controlador, ObjectId _id) {
 		super(_x, _y, _id);
 		this.controlador = _controlador;
-		jogadorAndando = new Animacao(1, tex.jogador[1],tex.jogador[2],tex.jogador[3], tex.jogador[4]);
-		jogadorAndandoTras = new Animacao(1, tex.jogador[5],tex.jogador[6],tex.jogador[7], tex.jogador[8]);
+		jogadorAndando = new Animacao(5, tex.jogador[1],tex.jogador[2],tex.jogador[3], tex.jogador[4]);
+		jogadorAndandoTras = new Animacao(5, tex.jogador[5],tex.jogador[6],tex.jogador[7], tex.jogador[8]);
 	}
-
+	
 	public void tick(LinkedList<Objeto_Jogo> objeto) {
 		x += velX;
 		y += velY;
-		if(velX<0){
-			enfrentando =-1;
-		}else{
-			enfrentando =1;
+		if (velX < 0) {// andando para tras
+			velTiro = -1;// seta direcao do tiro - para tras
+		} else {
+			velTiro = 1; // seta direcao do tiro - para frente
 		}
-		
 		if (queda || pulo) {
 			velY += gravity;
 			if (velY > VelocidadeMaxima) {
@@ -49,7 +47,7 @@ public class Jogador extends Objeto_Jogo {
 		}
 		colisoes(objeto);
 		jogadorAndando.corridaAnimacao();
-		
+		jogadorAndandoTras.corridaAnimacao();
 	}
 
 	private void colisoes(LinkedList<Objeto_Jogo> objeto) {
@@ -60,7 +58,7 @@ public class Jogador extends Objeto_Jogo {
 			if (tempObjeto.getId() == ObjectId.Bloco) {
 
 				if (getBlocosTopo().intersects(tempObjeto.getBlocos())) {
-					y = tempObjeto.getY()+32;
+					y = tempObjeto.getY() + 32;
 					velY = 0;
 				}
 				if (getBlocos().intersects(tempObjeto.getBlocos())) {
@@ -68,39 +66,63 @@ public class Jogador extends Objeto_Jogo {
 					velY = 0;
 					queda = false;
 					pulo = false;
-				}else{
-					queda=true;
+				} else {
+					queda = true;
 					if (getBlocosDireita().intersects(tempObjeto.getBlocos())) {
 						x = tempObjeto.getX() - width;
 					}
 
 					if (getBlocosEsquerda().intersects(tempObjeto.getBlocos())) {
-						x = tempObjeto.getX() + width-17;
+						x = tempObjeto.getX() + width - 17;
 					}
 				}
 
 			}
 
+			/*
+			 * if (tempObjeto.getId()== ObjectId.Bala) {}{ Bala_Tiro tempBala =
+			 * (Bala_Tiro) controlador.objeto.get(i); if
+			 * (getBlocosTopo().intersects(tempBala.getBalaTopo())) { y =
+			 * tempObjeto.getY() + 32; velY = 0;
+			 * System.out.println("////////////////   MATOU ////////////////");
+			 * } if (getBlocos().intersects(tempBala.getDownBalas())) { y =
+			 * tempObjeto.getY() - height; velY = 0;
+			 * System.out.println("////////////////   MATOU ////////////////");
+			 * } else { queda = true; if
+			 * (getBlocosDireita().intersects(tempBala.getBalaDireita())) { x =
+			 * tempObjeto.getX() - width;
+			 * System.out.println("////////////////   MATOU ////////////////");
+			 * }
+			 * 
+			 * if (getBlocosEsquerda().intersects(tempBala.getBalaEsquerda())) {
+			 * x = tempObjeto.getX() + width - 17;
+			 * System.out.println("////////////////   MATOU ////////////////");
+			 * } }
+			 * 
+			 * 
+			 * }
+			 */
 		}
 	}
 
 	public void render(Graphics g) {
 		if (velX!=0) {
 			if (velX > 0) {
-				frente = true;
+				dir = 1;
+				esq = 0;
 				jogadorAndando.drawAnimacao(g, (int)x, (int)y,70,70);
 			} else {
-				frente = false;
+				dir = 0;
+				esq = 1;
 				jogadorAndandoTras.drawAnimacao(g, (int)x, (int)y,70,70);
 			}
 		} else {
-			if (frente) {
+			if (dir == 1) {
 				g.drawImage(tex.jogador[0], (int)x,(int)y,70,70,null);
 			} else {
 				g.drawImage(tex.jogador[9], (int)x,(int)y,70,70,null);
 			}
 		}
-		
 
 	}
 

@@ -23,13 +23,13 @@ public class Texturas {
 		}
 		bs = new SpriteSheet(block_sheet);
 		ps = new SpriteSheet(jogador_sheet);
-
 		getTexturas();
 	}
 
 	private void getTexturas() {
 		block[0] = bs.grabImage(1, 1, 32, 32);// terra block
 		block[1] = bs.grabImage(2, 1, 32, 32);// grama block
+		block[2] = bs.grabImage(3, 1, 32, 32);// concreto block
 		
 	
 		jogador[0] = ps.grabImage(5, 2, 70, 70); // personagem inativo frente
@@ -46,30 +46,8 @@ public class Texturas {
 		jogador[6] = ps.grabImage(2, 3, 70, 70); 
 		jogador[7] = ps.grabImage(3, 3, 70, 70);
 		jogador[8] = ps.grabImage(4, 3, 70, 70);
-		/*
-		 * EXEMPLO - (2, 1, 54, 58); o 2 significa a coluna na imagem, 1
-		 * significa a linha 54 significa a largura e 58 altura
-		 */
-		
-		
-		/*
 
-		if (objetoJogo.getVelX() == 0) {
-			jogador[0] = ps.grabImage(2, 1, 54, 58); // personagem inativo do
-			// jogador
-		} else if (objetoJogo.getVelX() == -1) {
-			// jogandor andando para tras
-		} else if (objetoJogo.getVelX() == 1) {
-			// andando para frente
-		} else {
-			if (objetoJogo.getEnfretando() == 1) {
-				jogador[2] = ps.grabImage(1, 1, 54, 58); // atirando
-			} else if (objetoJogo.pulo == true) {
-				// imagem do jogador pulando
-			}
-		}
-
-		*/
+		
 	}
 
 }

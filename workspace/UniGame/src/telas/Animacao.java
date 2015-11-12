@@ -1,6 +1,7 @@
 package telas;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 public class Animacao {
@@ -45,6 +46,11 @@ public class Animacao {
 	public void drawAnimacao(Graphics g, int x, int y){
 		g.drawImage(imagemAtual,x,y,null);
 	}
+	
+	public void drawExplosao(Graphics g,BufferedImage im, float f, float h){
+		g.drawImage(im,(int)f,(int)h,null);
+	}  
+	
 	
 	public void drawAnimacao(Graphics g, int x, int y, int scaleX, int scaleY){
 		g.drawImage(imagemAtual,x,y,scaleX,scaleY,null);

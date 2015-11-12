@@ -14,9 +14,10 @@ public class Bloco extends Objeto_Jogo {
 
 	Texturas tex = Jogo.getInstance();
 	private int type;
+
 	public Bloco(float _x, float _y, int _type, ObjectId _id) {
 		super(_x, _y, _id);
-		this.type =_type;
+		this.type = _type;
 	}
 
 	public void tick(LinkedList<Objeto_Jogo> objeto) {
@@ -24,17 +25,13 @@ public class Bloco extends Objeto_Jogo {
 	}
 
 	public void render(Graphics g) {
-		if(type==2){// BLOCO GRAMA
-			g.drawImage(tex.block[type],(int)x,(int) y, null);
+		if (type == 0) {// Terra
+			g.drawImage(tex.block[type], (int) x, (int) y, null);
+		} else if (type == 1) {// grama bloco
+			g.drawImage(tex.block[type], (int) x, (int) y, null);
+		} else {// grama bloco
+			g.drawImage(tex.block[type], (int) x, (int) y, null);
 		}
-		
-		if(type==1){// Terra bloco
-			g.drawImage(tex.block[type],(int)x,(int) y, null);
-		}
-		if(type==0){// Terra CONCRETO SINZA
-			g.drawImage(tex.block[type],(int)x,(int) y, null);
-		}
-
 	}
 
 	// BLOCOS ABAIXO DA TELA
