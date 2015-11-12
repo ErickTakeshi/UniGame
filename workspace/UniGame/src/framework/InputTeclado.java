@@ -72,9 +72,12 @@ public class InputTeclado extends KeyAdapter {
 						tempObjeto.setVelX(-1f);
 					}
 					if (key == KeyEvent.VK_SPACE) {
-						controlador.addObject(new Bala_Tiro(tempObjeto.getX() + 36,
-								tempObjeto.getY() + 32, controlador, ObjectId.Bala,
-								tempObjeto.getEnfretando() * 2));
+						if (!tempObjeto.isPulo()) {
+							controlador.addObject(new Bala_Tiro(tempObjeto.getX() + 36,
+									tempObjeto.getY() + 32, controlador, ObjectId.Bala,
+									tempObjeto.getEnfretando() * 2));
+						}
+						
 	
 					}
 				}
