@@ -8,51 +8,80 @@ public abstract class Objeto_Jogo {
 
 	protected float x, y;
 	protected ObjectId id;
-	protected float velX = 0, velY = 0;
+	protected float velX = 0, velY = 0, esq=0, dir=0;
 	protected boolean queda = true;
 	protected boolean pulo = true;
-	protected int enfrentando = 1;
-	
-	
+	protected int velTiro = 1;
+
 	protected Objeto_Jogo(float _x, float _y, ObjectId _id) {
 		this.x = _x;
 		this.y = _y;
 		this.id = _id;
 	}
 
-	public abstract void tick(LinkedList<Objeto_Jogo> objeto);	
+	public abstract void tick(LinkedList<Objeto_Jogo> objeto);
+
 	public abstract void render(Graphics g);
-	
+
 	public abstract Rectangle getBlocos();
-	
-	public float getX(){
+
+	public float getX() {
 		return x;
 	}
-	public float getY(){
+
+	public float getY() {
 		return y;
 	}
-	public void setX(float _x){
+
+	public void setX(float _x) {
 		this.x = _x;
 	}
-	public void setY(float _y){
+
+	public void setY(float _y) {
 		this.y = _y;
 	}
-	
-	public float getVelX(){
+
+	public float getVelX() {
 		return velX;
 	}
-	public  float getVelY(){
+
+	public float getVelY() {
 		return velY;
 	}
-	public void setVelX(float d){
-		this.velX =  d;
+
+	public void setVelX(float d) {
+		this.velX = d;
+		if(d>0){
+			dir =1;
+			esq =0;
+		}
+		if(d<0){
+			esq=1;
+			dir =0;
+		}
+		
 	}
-	public void setVelY(float _veloY){
+
+	public float getEsq() {
+		return esq;
+	}
+
+	public void setEsq(float esq) {
+		this.esq = esq;
+	}
+
+	public float getDir() {
+		return dir;
+	}
+
+	public void setDir(float dir) {
+		this.dir = dir;
+	}
+
+	public void setVelY(float _veloY) {
 		this.velY = _veloY;
 	}
-	
-	
-	
+
 	public boolean isQueda() {
 		return queda;
 	}
@@ -69,12 +98,11 @@ public abstract class Objeto_Jogo {
 		this.pulo = pulo;
 	}
 
-	public int getEnfretando(){
-		return this.enfrentando;
+	public int getVelTiro() {
+		return this.velTiro;
 	}
-	public ObjectId getId(){
+
+	public ObjectId getId() {
 		return id;
 	}
-	
-	
 }
