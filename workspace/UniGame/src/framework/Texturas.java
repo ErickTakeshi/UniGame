@@ -1,7 +1,6 @@
 package framework;
 
 import java.awt.image.BufferedImage;
-
 import telas.BufferedImageLoader;
 
 public class Texturas {
@@ -11,7 +10,6 @@ public class Texturas {
 	private Objeto_Jogo objetoJogo;
 	public BufferedImage[] block = new BufferedImage[3];
 	public BufferedImage[] jogador = new BufferedImage[10];
-
 
 	public Texturas() {
 		BufferedImageLoader loader = new BufferedImageLoader();
@@ -29,12 +27,10 @@ public class Texturas {
 	private void getTexturas() {
 		block[0] = bs.grabImage(1, 1, 32, 32);// terra block
 		block[1] = bs.grabImage(2, 1, 32, 32);// grama block
-		block[2] = bs.grabImage(3, 1, 32, 32);// concreto block
-		
+		block[2] = bs.grabImage(3, 1, 32, 32);// concreto block		
 	
 		jogador[0] = ps.grabImage(5, 2, 70, 70); // personagem inativo frente
 		jogador[9] = ps.grabImage(5, 3, 70, 70); // personagem inativo traz
-
 		
 		//ANDANDO PRA FRENTE
 		jogador[1] = ps.grabImage(1, 2, 70, 70);

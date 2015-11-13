@@ -60,8 +60,7 @@ public abstract class Objeto_Jogo {
 		if(d<0){
 			esq=1;
 			dir =0;
-		}
-		
+		}		
 	}
 
 	public float getEsq() {
@@ -91,8 +90,7 @@ public abstract class Objeto_Jogo {
 	public void setAngulo(int _angulo) {
 		if (_angulo > -91 && angulo < 91) 
 			this.angulo = _angulo;
-	}
-	
+	}	
 
 	public boolean isQueda() {
 		return queda;

@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.LinkedList;
-
 import telas.Controlador;
 import telas.Jogo;
 import framework.ObjectId;
@@ -84,9 +83,8 @@ public class Bala_Tiro extends Objeto_Jogo {
 					}
 				}
 			} else if (tempObjeto.getId() == ObjectId.Bala) {
-				if (tempObjeto.getY() > 620 || tempObjeto.getX() > 2005 || tempObjeto.getX() < 95) {
+				if (tempObjeto.getY() > 630 || tempObjeto.getX() > 2005 || tempObjeto.getX() < 95) {
 					controlador.removeObject(tempObjeto);
-					System.out.println("bala removida foi para fora do cenario");
 				}
 			}
 		}

@@ -80,7 +80,6 @@ public class Jogo extends Canvas implements Runnable {
 		}
 	}
 
-	// escala loop atualiza��es
 	private void tick() {
 		controlador.tick();
 		for (int i = 0; i < controlador.objeto.size(); i++) {
@@ -88,7 +87,6 @@ public class Jogo extends Canvas implements Runnable {
 				cam.tick(controlador.objeto.get(i));
 			}
 		}
-		//cam.tick();
 	}
 
 	// imagem/fundo/grafico
@@ -97,31 +95,19 @@ public class Jogo extends Canvas implements Runnable {
 		if (bs == null) {
 			this.createBufferStrategy(3);// basic 3 windows
 			return;
-		}
-		
+		}		
 		Graphics g = bs.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D)g; // camera
-		
 		// ------------ desenha aqui --------------------
 		g.setColor(new Color(25,191,224)); // cor de fundo
 		g.fillRect(0, 0, LARG, ALT);
-		//g.drawImage(nuvem, 0, 0, this); // nuvem
-		g2d.translate(cam.getX()+150,cam.getY()); // inicio da camera		
-		//for (int xx = 0; xx <nuvem.getWidth()*7; xx+=nuvem.getWidth()) {
-		//	g.drawImage(nuvem, xx+xx, 50, this);
-		//}
-		//g.drawImage(nuvem, 0, 50, this);
-		
+		g2d.translate(cam.getX()+150,cam.getY()); // inicio da camera
 		controlador.render(g);	
-			
 		g2d.translate(-cam.getX()+100,-cam.getY()); // fim da camera
-		// ///////////////////////////////
 		g.dispose();
 		bs.show();
 	}
 
-	
-	
 	private void LoadImageLevel(BufferedImage image){
 		int w =image.getWidth();
 		int h = image.getHeight();
@@ -139,10 +125,8 @@ public class Jogo extends Canvas implements Runnable {
 				if(red==50 && green ==50 && blue ==50){
 					//System.out.println("cria Objeto");
 					controlador.addObject(new Jogador(xx*32,yy*32,controlador, ObjectId.Player));
-				}							
-				
-			}
-			
+				}				
+			}			
 		}
 	}
 	

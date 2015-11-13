@@ -1,13 +1,13 @@
 package telas;
 
 import java.awt.Graphics;
+
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 public class Animacao {
 	private int velocidade;
-	private int frames;
-	
+	private int frames;	
 	private BufferedImage[] imagens;
 	private BufferedImage imagemAtual;
 	private int index=0;
@@ -49,8 +49,7 @@ public class Animacao {
 	
 	public void drawExplosao(Graphics g,BufferedImage im, float f, float h){
 		g.drawImage(im,(int)f,(int)h,null);
-	}  
-	
+	}  	
 	
 	public void drawAnimacao(Graphics g, int x, int y, int scaleX, int scaleY){
 		g.drawImage(imagemAtual,x,y,scaleX,scaleY,null);
