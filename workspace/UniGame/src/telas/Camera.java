@@ -11,7 +11,7 @@ public class Camera {
 	}
 
 	public void tick(Objeto_Jogo player) {
-		x = -player.getX() + Jogo.WIDTH + 32;// acompanha o jogador
+		x = -player.getX() + Jogo.WIDTH + 32;
 	}
 
 	public float getX() {
