@@ -56,7 +56,7 @@ public class InputTeclado extends KeyAdapter {
 					
 				
 					if ((key == KeyEvent.VK_UP) && (tempObjeto.isPulo()) == false) {
-						tempObjeto.setVelY(-0.7f);
+						tempObjeto.setVelY(-0.8f);
 						tempObjeto.setQueda(true);
 						tempObjeto.setPulo(true);						
 					}

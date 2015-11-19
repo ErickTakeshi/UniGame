@@ -2,29 +2,33 @@ package telas;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
-
 import objetos.Bloco;
 import objetos.Jogador;
 import framework.InputTeclado;
 import framework.ObjectId;
 import framework.Objeto_Jogo;
 import framework.Texturas;
+import main.Main;
 
+import javax.swing.JButton;
 public class Jogo extends Canvas implements Runnable {
 	private static final long serialVersionUID = -8704436632459519948L;
 	private boolean JogoRodando = false;
 	private Thread thread;
 	public static int LARG, ALT;
 	private BufferedImage level = null,nuvem=null;
-
+	 
 	// objeto
 	Controlador controlador;
 	Camera cam;
@@ -45,6 +49,14 @@ public class Jogo extends Canvas implements Runnable {
 		this.addKeyListener(new InputTeclado(controlador));
 	}
 
+	
+	 
+	 
+		public void actionPerformed(ActionEvent e) {
+			Main m = new Main();	
+		}
+	
+	
 	public synchronized void start() {
 		if (JogoRodando) {
 			return;
@@ -53,7 +65,8 @@ public class Jogo extends Canvas implements Runnable {
 		thread = new Thread(this);
 		thread.start();
 	}
-
+	
+	
 	public void run() {
 		init();
 		long ultimoTempo = System.nanoTime();
@@ -113,16 +126,18 @@ public class Jogo extends Canvas implements Runnable {
 		g.setColor(new Color(25,191,224)); // cor de fundo
 		
 		g.fillRect(0, 0, LARG, ALT);
-		g.setColor(new Color(97,38,176));
-		
+		g.setColor(new Color(97,38,176));		
 		Font newFont = Font.createFont(Font.TRUETYPE_FONT, Jogo.class.getResourceAsStream("/bits.ttf")).deriveFont(50f);
 		g.setFont(newFont);
 		g.drawString("UniGame", 470, 100);	
 		//g2d.translate(cam.getX()+150,cam.getY()); // inicio da camera
 		g.setColor(Color.yellow);
-		g.fillOval(1100, 20, 27, 27);
+		g.fillOval(1100, 20, 40, 40);
 		controlador.render(g);	
 		//g2d.translate(-cam.getX()+100,-cam.getY()); // fim da camera
+		JButton btnOk = new JButton("Ok");		
+		btnOk.setPreferredSize(new Dimension(30, 50));
+		btnOk.setVisible(true);		
 		g.dispose();
 		bs.show();
 	}
