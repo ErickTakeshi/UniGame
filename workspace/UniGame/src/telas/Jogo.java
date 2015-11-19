@@ -100,10 +100,13 @@ public class Jogo extends Canvas implements Runnable {
 		Graphics2D g2d = (Graphics2D)g; // camera
 		// ------------ desenha aqui --------------------
 		g.setColor(new Color(25,191,224)); // cor de fundo
+		
 		g.fillRect(0, 0, LARG, ALT);
-		g2d.translate(cam.getX()+150,cam.getY()); // inicio da camera
+		//g2d.translate(cam.getX()+150,cam.getY()); // inicio da camera
+		g.setColor(Color.yellow);
+		g.fillOval(1100, 20, 27, 27);
 		controlador.render(g);	
-		g2d.translate(-cam.getX()+100,-cam.getY()); // fim da camera
+		//g2d.translate(-cam.getX()+100,-cam.getY()); // fim da camera
 		g.dispose();
 		bs.show();
 	}
@@ -125,6 +128,9 @@ public class Jogo extends Canvas implements Runnable {
 				if(red==50 && green ==50 && blue ==50){
 					//System.out.println("cria Objeto");
 					controlador.addObject(new Jogador(xx*32,yy*32,controlador, ObjectId.Player));
+				}if(red==200 && green ==200 && blue ==200){
+					//System.out.println("cria Objeto");
+				//	controlador.addObject(new Jogador(xx*32,yy*32,controlador, ObjectId.Player));
 				}				
 			}			
 		}

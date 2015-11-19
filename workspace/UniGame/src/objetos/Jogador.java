@@ -20,12 +20,12 @@ public class Jogador extends Objeto_Jogo {
 	private float width = 48, height = 64;
 	private float gravity = 0.008f;// velocidade da gravidade
 	private boolean queda = true;
+	private int vida = 10;
 	private final float VelocidadeMaxima = 8;
 	private Controlador controlador;
 	Texturas tex = Jogo.getInstance();
-	private Animacao jogadorAndando, jogadorAndandoTras, jogadorAndando1,
-			jogadorAndandoTras1, jogadorAndando2, jogadorAndando3,
-			jogadorAndandoTras2, jogadorAndandoTras3;
+	private Animacao jogadorAndando, jogadorAndandoTras, jogadorAndando1, jogadorAndandoTras1, jogadorAndando2,
+			jogadorAndando3, jogadorAndandoTras2, jogadorAndandoTras3, jogadorAndando4, jogadorAndandoTras4;
 	private LinkedList<Animacao> listaFrente = new LinkedList<Animacao>();
 	private int tFrente = 0, tTras = 0;
 
@@ -36,10 +36,12 @@ public class Jogador extends Objeto_Jogo {
 		jogadorAndando1 = new Animacao(2, tex.jogador[2]);
 		jogadorAndando2 = new Animacao(2, tex.jogador[3]);
 		jogadorAndando3 = new Animacao(2, tex.jogador[4]);
-		jogadorAndandoTras = new Animacao(2, tex.jogador[5]);
-		jogadorAndandoTras1 = new Animacao(2, tex.jogador[6]);
-		jogadorAndandoTras2 = new Animacao(2, tex.jogador[7]);
-		jogadorAndandoTras3 = new Animacao(2, tex.jogador[8]);
+		jogadorAndando4 = new Animacao(2, tex.jogador[5]);
+		jogadorAndandoTras = new Animacao(2, tex.jogador[6]);
+		jogadorAndandoTras1 = new Animacao(2, tex.jogador[7]);
+		jogadorAndandoTras2 = new Animacao(2, tex.jogador[8]);
+		jogadorAndandoTras3 = new Animacao(2, tex.jogador[9]);
+		jogadorAndandoTras4 = new Animacao(2, tex.jogador[10]);
 
 	}
 
@@ -62,10 +64,12 @@ public class Jogador extends Objeto_Jogo {
 		jogadorAndando1.corridaAnimacao();
 		jogadorAndando2.corridaAnimacao();
 		jogadorAndando3.corridaAnimacao();
+		jogadorAndando4.corridaAnimacao();
 		jogadorAndandoTras.corridaAnimacao();
 		jogadorAndandoTras1.corridaAnimacao();
 		jogadorAndandoTras2.corridaAnimacao();
 		jogadorAndandoTras3.corridaAnimacao();
+		jogadorAndandoTras4.corridaAnimacao();
 	}
 
 	private void colisoes(LinkedList<Objeto_Jogo> objeto) {
@@ -87,44 +91,30 @@ public class Jogador extends Objeto_Jogo {
 				} else {
 					queda = true;
 					if (getBlocosDireita().intersects(tempObjeto.getBlocos())) {
-						x = tempObjeto.getX() - width-2;
+						x = tempObjeto.getX() - width - 2;
 					}
 
 					if (getBlocosEsquerda().intersects(tempObjeto.getBlocos())) {
-						x = tempObjeto.getX() + width-16 ;
+						x = tempObjeto.getX() + width - 16;
 					}
+				}
+			} else if (tempObjeto.getId() == ObjectId.Player) {
+
+				if (getBlocosDireita().intersects(tempObjeto.getBlocos())) {
+					x = tempObjeto.getX() - width - 10;
+				}
+
+				if (getBlocosEsquerda().intersects(tempObjeto.getBlocos())) {
+					x = tempObjeto.getX() + width - 20;
 				}
 
 			}
 
-			/*
-			 * COLISÃO TIRO - JOGADOR X JOGADOR if (tempObjeto.getId()==
-			 * ObjectId.Bala) {}{ Bala_Tiro tempBala = (Bala_Tiro)
-			 * controlador.objeto.get(i); if
-			 * (getBlocosTopo().intersects(tempBala.getBalaTopo())) { y =
-			 * tempObjeto.getY() + 32; velY = 0;
-			 * System.out.println("////////////////   MATOU ////////////////");
-			 * } if (getBlocos().intersects(tempBala.getDownBalas())) { y =
-			 * tempObjeto.getY() - height; velY = 0;
-			 * System.out.println("////////////////   MATOU ////////////////");
-			 * } else { queda = true; if
-			 * (getBlocosDireita().intersects(tempBala.getBalaDireita())) { x =
-			 * tempObjeto.getX() - width;
-			 * System.out.println("////////////////   MATOU ////////////////");
-			 * }
-			 * 
-			 * if (getBlocosEsquerda().intersects(tempBala.getBalaEsquerda())) {
-			 * x = tempObjeto.getX() + width - 17;
-			 * System.out.println("////////////////   MATOU ////////////////");
-			 * } }
-			 * 
-			 * 
-			 * }
-			 */
 		}
 	}
 
 	public void render(Graphics g) {
+				
 		if (velX != 0) {
 			tFrente++;
 			if (velX > 0) {
@@ -139,6 +129,9 @@ public class Jogador extends Objeto_Jogo {
 					jogadorAndando2.drawAnimacao(g, (int) x, (int) y, 70, 70);
 				} else if (tFrente == 4) {
 					jogadorAndando3.drawAnimacao(g, (int) x, (int) y, 70, 70);
+
+				} else {
+					jogadorAndando4.drawAnimacao(g, (int) x, (int) y, 70, 70);
 					tFrente = 0;
 				}
 
@@ -149,17 +142,15 @@ public class Jogador extends Objeto_Jogo {
 				esq = 1;
 
 				if (tTras == 1) {
-					jogadorAndandoTras
-							.drawAnimacao(g, (int) x, (int) y, 70, 70);
+					jogadorAndandoTras.drawAnimacao(g, (int) x, (int) y, 70, 70);
 				} else if (tTras == 2) {
-					jogadorAndandoTras1.drawAnimacao(g, (int) x, (int) y, 70,
-							70);
+					jogadorAndandoTras1.drawAnimacao(g, (int) x, (int) y, 70, 70);
 				} else if (tTras == 3) {
-					jogadorAndandoTras2.drawAnimacao(g, (int) x, (int) y, 70,
-							70);
+					jogadorAndandoTras2.drawAnimacao(g, (int) x, (int) y, 70, 70);
 				} else if (tTras == 4) {
-					jogadorAndandoTras3.drawAnimacao(g, (int) x, (int) y, 70,
-							70);
+					jogadorAndandoTras3.drawAnimacao(g, (int) x, (int) y, 70, 70);
+				} else {
+					jogadorAndandoTras4.drawAnimacao(g, (int) x, (int) y, 70, 70);
 					tTras = 0;
 				}
 			}
@@ -167,25 +158,23 @@ public class Jogador extends Objeto_Jogo {
 			if (dir == 1) {
 				g.drawImage(tex.jogador[0], (int) x, (int) y, 70, 70, null);
 			} else {
-				g.drawImage(tex.jogador[9], (int) x, (int) y, 70, 70, null);
+				g.drawImage(tex.jogador[11], (int) x, (int) y, 70, 70, null);
 			}
 		}
 
 	}
 
 	public Rectangle getBlocos() {
-		return new Rectangle((int) (x + (width / 2) - (width / 2) / 2),
-				(int) (y + (height / 2)), (int) width / 2, (int) height / 2);
+		return new Rectangle((int) (x + (width / 2) - (width / 2) / 2), (int) (y + (height / 2)), (int) width / 2,
+				(int) height / 2);
 	}
 
 	public Rectangle getBlocosTopo() {
-		return new Rectangle((int) (x + (width / 2) - (width / 2) / 2),
-				(int) y, (int) width / 2, (int) height / 2);
+		return new Rectangle((int) (x + (width / 2) - (width / 2) / 2), (int) y, (int) width / 2, (int) height / 2);
 	}
 
 	public Rectangle getBlocosDireita() {
-		return new Rectangle((int) (x + width - 5), (int) y + 5, (int) 5,
-				(int) height - 10);
+		return new Rectangle((int) (x + width - 5), (int) y + 5, (int) 5, (int) height - 10);
 	}
 
 	public Rectangle getBlocosEsquerda() {

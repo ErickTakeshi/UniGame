@@ -56,19 +56,20 @@ public class InputTeclado extends KeyAdapter {
 					
 				
 					if ((key == KeyEvent.VK_UP) && (tempObjeto.isPulo()) == false) {
-						tempObjeto.setVelY(-1.5f);
+						tempObjeto.setVelY(-0.7f);
 						tempObjeto.setQueda(true);
 						tempObjeto.setPulo(true);						
 					}
-	
+					
 					if (key == KeyEvent.VK_RIGHT) {
-						tempObjeto.setVelX(1f);
+						tempObjeto.setVelX(0.7f);
 					}
 					if (key == KeyEvent.VK_LEFT) {
-						tempObjeto.setVelX(-1f);
+						tempObjeto.setVelX(-0.7f);
 					}
 					if (key == KeyEvent.VK_SPACE) {
 						int sentido = 0, xx = 51;
+						tempObjeto.atira=1;
 						if (tempObjeto.getDir() == 1) {
 							sentido = 1;
 						} else {
@@ -117,7 +118,10 @@ public class InputTeclado extends KeyAdapter {
 				}
 				if (key == KeyEvent.VK_LEFT) {
 					tempObjeto.setVelX(0);
-				}				
+				}	
+				if(key == KeyEvent.VK_SPACE){
+					tempObjeto.atira=0;
+				}
 			}
 		}
 	}

@@ -11,7 +11,7 @@ public abstract class Objeto_Jogo {
 	protected float velX = 0, velY = 0, esq=0, dir=1;
 	protected boolean queda = true;
 	protected boolean pulo = true;
-	protected int vida = 100;
+	protected int vida = 100, atira=0;
 	protected int angulo = 0;	
 	protected int velTiro = 1;
 
