@@ -2,10 +2,13 @@ package telas;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Random;
 
 import objetos.Bloco;
@@ -29,7 +32,7 @@ public class Jogo extends Canvas implements Runnable {
 	Random rand = new Random();
 
 	private void init() {
-		LARG = getWidth();
+		LARG = getWidth();    
 		ALT = getHeight();
 		tex = new Texturas();
 		BufferedImageLoader loader = new BufferedImageLoader();		
@@ -69,7 +72,15 @@ public class Jogo extends Canvas implements Runnable {
 				atualizacoes++;
 				delta--;
 			}
-			render();
+			try {
+				render();
+			} catch (FontFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			frames++;
 			if (System.currentTimeMillis() - tempo > 1000) {
 				tempo += 1000;
@@ -90,7 +101,7 @@ public class Jogo extends Canvas implements Runnable {
 	}
 
 	// imagem/fundo/grafico
-	private void render() {
+	private void render() throws FontFormatException, IOException {
 		BufferStrategy bs = this.getBufferStrategy();
 		if (bs == null) {
 			this.createBufferStrategy(3);// basic 3 windows
@@ -102,6 +113,11 @@ public class Jogo extends Canvas implements Runnable {
 		g.setColor(new Color(25,191,224)); // cor de fundo
 		
 		g.fillRect(0, 0, LARG, ALT);
+		g.setColor(new Color(97,38,176));
+		
+		Font newFont = Font.createFont(Font.TRUETYPE_FONT, Jogo.class.getResourceAsStream("/bits.ttf")).deriveFont(50f);
+		g.setFont(newFont);
+		g.drawString("UniGame", 470, 100);	
 		//g2d.translate(cam.getX()+150,cam.getY()); // inicio da camera
 		g.setColor(Color.yellow);
 		g.fillOval(1100, 20, 27, 27);
