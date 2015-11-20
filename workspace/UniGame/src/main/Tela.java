@@ -11,21 +11,26 @@ import javax.swing.border.EmptyBorder;
 
 import client.TCPClient;
 import server.TCPServer;
+import sun.print.resources.serviceui;
 import telas.Janela;
 import telas.Jogo;
 
 import javax.swing.JRadioButton;
+
 import java.awt.Panel;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
 import java.awt.event.ActionListener;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JButton;
 
 public class Tela extends JFrame {
@@ -64,7 +69,7 @@ public class Tela extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
 
-		JRadioButton rdbtnServer = new JRadioButton("Server");
+		final JRadioButton rdbtnServer = new JRadioButton("Server");
 		rdbtnServer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtIp.setEnabled(false);
@@ -72,7 +77,7 @@ public class Tela extends JFrame {
 		});
 		panel.add(rdbtnServer);
 
-		JRadioButton rdbtnClient = new JRadioButton("Client");
+		final JRadioButton rdbtnClient = new JRadioButton("Client");
 		rdbtnClient.setSelected(true);
 		rdbtnClient.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -120,8 +125,10 @@ public class Tela extends JFrame {
 					TCPClient client = new TCPClient(c);
 					Thread clie = new Thread(client);
 					clie.start();
+					Janela t = new Janela(1200, 650, "Game Unifil - Grupo UniGame", new Jogo(client.getSocket()));
 				}
-				Janela t = new Janela(1200, 650, "Game Unifil - Grupo UniGame", new Jogo());
+				
+				
 				dispose();
 			}
 		});

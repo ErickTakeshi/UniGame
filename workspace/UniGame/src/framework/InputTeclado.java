@@ -2,6 +2,7 @@ package framework;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.PrintStream;
 import java.time.temporal.Temporal;
 
 import objetos.Bala_Tiro;
@@ -58,7 +59,9 @@ public class InputTeclado extends KeyAdapter {
 					if ((key == KeyEvent.VK_UP) && (tempObjeto.isPulo()) == false) {
 						tempObjeto.setVelY(-0.8f);
 						tempObjeto.setQueda(true);
-						tempObjeto.setPulo(true);						
+						tempObjeto.setPulo(true);			
+						PrintStream ps = tempObjeto.getPrintStream();
+						ps.println("PULO!");
 					}
 					
 					if (key == KeyEvent.VK_RIGHT) {

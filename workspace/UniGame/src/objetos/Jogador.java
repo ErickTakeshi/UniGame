@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.net.Socket;
 import java.util.LinkedList;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
@@ -31,6 +32,22 @@ public class Jogador extends Objeto_Jogo {
 
 	public Jogador(float _x, float _y, Controlador _controlador, ObjectId _id) {
 		super(_x, _y, _id);
+		this.controlador = _controlador;
+		jogadorAndando = new Animacao(2, tex.jogador[1]);
+		jogadorAndando1 = new Animacao(2, tex.jogador[2]);
+		jogadorAndando2 = new Animacao(2, tex.jogador[3]);
+		jogadorAndando3 = new Animacao(2, tex.jogador[4]);
+		jogadorAndando4 = new Animacao(2, tex.jogador[5]);
+		jogadorAndandoTras = new Animacao(2, tex.jogador[6]);
+		jogadorAndandoTras1 = new Animacao(2, tex.jogador[7]);
+		jogadorAndandoTras2 = new Animacao(2, tex.jogador[8]);
+		jogadorAndandoTras3 = new Animacao(2, tex.jogador[9]);
+		jogadorAndandoTras4 = new Animacao(2, tex.jogador[10]);
+
+	}
+	
+	public Jogador(float _x, float _y, Controlador _controlador, ObjectId _id, Socket _s) {
+		super(_x, _y, _id, _s);
 		this.controlador = _controlador;
 		jogadorAndando = new Animacao(2, tex.jogador[1]);
 		jogadorAndando1 = new Animacao(2, tex.jogador[2]);

@@ -2,6 +2,9 @@ package framework;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.net.Socket;
 import java.util.LinkedList;
 
 public abstract class Objeto_Jogo {
@@ -14,11 +17,25 @@ public abstract class Objeto_Jogo {
 	protected int vida = 100, atira=0;
 	protected int angulo = 0;	
 	protected int velTiro = 1;
-
+	PrintStream printStream;
+	
+	
 	protected Objeto_Jogo(float _x, float _y, ObjectId _id) {
 		this.x = _x;
 		this.y = _y;
 		this.id = _id;
+	}
+	
+	protected Objeto_Jogo(float _x, float _y, ObjectId _id, Socket _s) {
+		this.x = _x;
+		this.y = _y;
+		this.id = _id;
+		try {
+			this.printStream = new PrintStream(_s.getOutputStream());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public abstract void tick(LinkedList<Objeto_Jogo> objeto);
@@ -73,6 +90,10 @@ public abstract class Objeto_Jogo {
 
 	public float getDir() {
 		return dir;
+	}
+	
+	public PrintStream getPrintStream() {
+		return printStream;
 	}
 
 	public void setDir(float dir) {

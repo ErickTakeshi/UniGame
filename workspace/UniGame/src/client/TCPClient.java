@@ -14,10 +14,10 @@ public class TCPClient implements Runnable {
 	public TCPClient(Configuracao conf) {
 		this.conf = conf;
 	}
-	
+	Socket skt;
    public void run() {
       try {
-         Socket skt = new Socket(conf.getIp(), conf.getPorta());
+         skt = new Socket(conf.getIp(), conf.getPorta());
          BufferedReader in = new BufferedReader(new
             InputStreamReader(skt.getInputStream()));
          System.out.print("Received string: '");
@@ -30,5 +30,9 @@ public class TCPClient implements Runnable {
       catch(Exception e) {
          JOptionPane.showMessageDialog(null, "Não foi possível estabeçecer conexão");
       }
+   }
+   
+   public Socket getSocket() {
+	   return this.skt;
    }
 }

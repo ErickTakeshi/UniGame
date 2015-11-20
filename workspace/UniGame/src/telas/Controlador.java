@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.net.Socket;
 import java.util.LinkedList;
 import java.util.concurrent.DelayQueue;
 import java.util.concurrent.Delayed;
@@ -24,7 +27,9 @@ public class Controlador {
 	private SpriteSheet bs, ps;
 	Jogador j;
 	Animacao anime;
-
+	Controlador () {
+		
+	}
 	public void tick() {
 		for (int i = 0; i < objeto.size(); i++) {
 			tempObjeto = objeto.get(i);

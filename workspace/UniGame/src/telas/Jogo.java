@@ -12,7 +12,9 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.Socket;
 import java.util.Random;
+
 import objetos.Bloco;
 import objetos.Jogador;
 import framework.InputTeclado;
@@ -34,7 +36,7 @@ public class Jogo extends Canvas implements Runnable {
 	Camera cam;
 	static Texturas tex;	
 	Random rand = new Random();
-
+	Socket socket;
 	private void init() {
 		LARG = getWidth();    
 		ALT = getHeight();
@@ -48,8 +50,10 @@ public class Jogo extends Canvas implements Runnable {
 		LoadImageLevel(level);		
 		this.addKeyListener(new InputTeclado(controlador));
 	}
-
-	
+		
+		public Jogo(Socket _s) {
+			this.socket = _s;
+		}
 	 
 	 
 		public void actionPerformed(ActionEvent e) {
@@ -158,10 +162,10 @@ public class Jogo extends Canvas implements Runnable {
 				}
 				if(red==50 && green ==50 && blue ==50){
 					//System.out.println("cria Objeto");
-					controlador.addObject(new Jogador(xx*32,yy*32,controlador, ObjectId.Player));
+					controlador.addObject(new Jogador(xx*32,yy*32,controlador, ObjectId.Player, socket));
 				}if(red==200 && green ==200 && blue ==200){
 					//System.out.println("cria Objeto");
-				//	controlador.addObject(new Jogador(xx*32,yy*32,controlador, ObjectId.Player));
+//					controlador.addObject(new Jogador(xx*32,yy*32,controlador, ObjectId.Player));
 				}				
 			}			
 		}
@@ -170,8 +174,8 @@ public class Jogo extends Canvas implements Runnable {
 	public static Texturas getInstance(){
 		return tex;
 	}
-	
-	public static void main(String args[]) {
-		new Janela(1200,650, "Game Unifil - Grupo UniGame", new Jogo());
-	}
+//	
+//	public static void main(String args[]) {
+//		new Janela(1200,650, "Game Unifil - Grupo UniGame", new Jogo());
+//	}
 }
