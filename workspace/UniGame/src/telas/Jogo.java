@@ -51,7 +51,9 @@ public class Jogo extends Canvas implements Runnable {
 		this.addKeyListener(new InputTeclado(controlador));
 	}
 		
+	public Jogo() {}
 		public Jogo(Socket _s) {
+			System.out.println(_s.getPort());
 			this.socket = _s;
 		}
 	 
@@ -162,7 +164,7 @@ public class Jogo extends Canvas implements Runnable {
 				}
 				if(red==50 && green ==50 && blue ==50){
 					//System.out.println("cria Objeto");
-					controlador.addObject(new Jogador(xx*32,yy*32,controlador, ObjectId.Player, socket));
+					controlador.addObject(new Jogador(xx*32,yy*32,controlador, ObjectId.Player));
 				}if(red==200 && green ==200 && blue ==200){
 					//System.out.println("cria Objeto");
 //					controlador.addObject(new Jogador(xx*32,yy*32,controlador, ObjectId.Player));
@@ -174,8 +176,8 @@ public class Jogo extends Canvas implements Runnable {
 	public static Texturas getInstance(){
 		return tex;
 	}
-//	
-//	public static void main(String args[]) {
-//		new Janela(1200,650, "Game Unifil - Grupo UniGame", new Jogo());
-//	}
+	
+	public static void main(String args[]) {
+		new Janela(1200,650, "Game Unifil - Grupo UniGame", new Jogo());
+	}
 }

@@ -59,7 +59,6 @@ public class Jogador extends Objeto_Jogo {
 		jogadorAndandoTras2 = new Animacao(2, tex.jogador[8]);
 		jogadorAndandoTras3 = new Animacao(2, tex.jogador[9]);
 		jogadorAndandoTras4 = new Animacao(2, tex.jogador[10]);
-
 	}
 
 	public void tick(LinkedList<Objeto_Jogo> objeto) {

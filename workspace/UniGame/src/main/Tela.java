@@ -125,8 +125,9 @@ public class Tela extends JFrame {
 					TCPClient client = new TCPClient(c);
 					Thread clie = new Thread(client);
 					clie.start();
-					Janela t = new Janela(1200, 650, "Game Unifil - Grupo UniGame", new Jogo(client.getSocket()));
+					
 				}
+				Janela t = new Janela(1200, 650, "Game Unifil - Grupo UniGame", new Jogo());
 				
 				
 				dispose();
